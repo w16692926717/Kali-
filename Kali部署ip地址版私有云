@@ -1,0 +1,10 @@
+安装网络文件系统：apt install samba
+
+开启此服务: systemctl start smbd
+
+修改配置文件：vim /etc/samba/smb.conf
+添加配置信息：[data]后面添加：guest ok = yes  //所有人都可以访问
+
+更改数据库密码：smbpasswd
+
+重启此服务：systemctl restart smbd
