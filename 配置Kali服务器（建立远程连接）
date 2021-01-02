@@ -1,0 +1,23 @@
+	先查看网卡信息：ip link show
+
+	找到lo和eth0，lo是内网网卡，eth0是外网网卡
+更改网卡配置：vim /etc/network/interfaces
+把auto lo后面加上eth0，把其他选项enp2s0改成eth0保存即可
+
+	重启此服务：systemctl restart networking
+
+更改mac地址：先关闭网卡：ifconfig eth0 down
+配置新的mac地址：ifconfig eth0 hw ether 00:00:00:00:00:11
+使服务永久生效：vim /etc/network/interfaces
+添加代码：pre-up ifconfig eth0 hw ether 00:00:00:00:00:11
+重启此服务：systemctl restart networking
+
+	验证网络：ping baidu.com
+
+	查看IP地址：ip addres show 或者：ip add
+
+	安装ssh：apt install openssh-server
+
+启动ssh服务：systemctl start ssh
+
+	验证是否启动：ssh localhost 若要是有输入yes则成功。
